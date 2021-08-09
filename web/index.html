@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <!--
     If you are serving your web app in a path other than the root, change the
@@ -26,10 +27,13 @@
   <title>qr_smartstorage</title>
   <link rel="manifest" href="manifest.json">
 
-  <meta name="google-signin-client_id" content="498095072809-5tovuoe7mnvmkcq47hm50och9k73cf52.apps.googleusercontent.com">
+  <meta name="google-signin-client_id"
+    content="498095072809-5tovuoe7mnvmkcq47hm50och9k73cf52.apps.googleusercontent.com">
 </head>
+
 <body>
   <script src="https://apis.google.com/js/platform.js" async defer></script>
+
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
@@ -99,5 +103,19 @@
   </script>
   <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyAxPe5Csf8Ywa71SHHS-C6rBovMBWWlR9w",
+      authDomain: "hazizz-velunk.firebaseapp.com",
+      databaseURL: "https://hazizz-velunk.firebaseio.com",
+      projectId: "hazizz-velunk",
+      storageBucket: "hazizz-velunk.appspot.com",
+      messagingSenderId: "498095072809",
+      appId: "1:498095072809:web:1edbac83ca925897529e38",
+      measurementId: "G-HKXNZQWL4R"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
 </body>
+
 </html>
