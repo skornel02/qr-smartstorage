@@ -25,8 +25,11 @@
 
   <title>qr_smartstorage</title>
   <link rel="manifest" href="manifest.json">
+
+  <meta name="google-signin-client_id" content="498095072809-5tovuoe7mnvmkcq47hm50och9k73cf52.apps.googleusercontent.com">
 </head>
 <body>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
@@ -94,5 +97,7 @@
       loadMainDartJs();
     }
   </script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
 </body>
 </html>

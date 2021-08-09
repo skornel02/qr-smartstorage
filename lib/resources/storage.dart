@@ -1,10 +1,9 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:equatable/equatable.dart';
 import 'package:qr_smartstorage/resources/storage_container.dart';
 import 'package:qr_smartstorage/resources/storage_item.dart';
 import 'package:qr_smartstorage/resources/storage_root.dart';
 
-@JsonSerializable()
-abstract class Storage {
+abstract class Storage extends Equatable {
   abstract String type;
   abstract String id;
   abstract String name;
@@ -27,4 +26,7 @@ abstract class Storage {
   }
 
   Map<String, dynamic> toJson();
+
+  @override
+  List<Object> get props => [type, id, name];
 }

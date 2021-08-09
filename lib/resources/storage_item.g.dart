@@ -12,7 +12,8 @@ StorageItem _$StorageItemFromJson(Map<String, dynamic> json) {
     json['name'] as String,
   )
     ..type = json['type'] as String
-    ..description = json['description'] as String?;
+    ..description = json['description'] as String?
+    ..creation = DateTime.parse(json['creation'] as String);
 }
 
 Map<String, dynamic> _$StorageItemToJson(StorageItem instance) =>
@@ -21,4 +22,5 @@ Map<String, dynamic> _$StorageItemToJson(StorageItem instance) =>
       'id': instance.id,
       'name': instance.name,
       'description': instance.description,
+      'creation': instance.creation.toIso8601String(),
     };

@@ -23,9 +23,17 @@ environment:
 dependencies:
   build_runner: ^2.1.1
   cupertino_icons: ^1.0.2
+  equatable: ^2.0.3
+  firebase_auth: ^3.0.1
+  firebase_core: ^1.4.0
   flutter:
     sdk: flutter
+  flutter_bloc: ^7.1.0
+  flutter_signin_button: ^2.0.0
+  google_sign_in: ^5.0.7
+  http: ^0.13.3
   json_annotation: 4.0.1
+  shared_preferences: ^2.0.6
   uuid: ^3.0.4
 
 dev_dependencies:
