@@ -3,11 +3,14 @@ import 'dart:convert';
 
 abstract class Repository {
   Future<StorageRoot> getRoot();
-  void saveRoot(StorageRoot root);
+  Future<void> saveRoot(StorageRoot root);
 
   StorageRoot parseRoot(String json) {
     try {
-      print(json);
+      print("PARSING: " + json);
+
+      if (json == "{}") return StorageRoot.empty();
+
       Map<String, dynamic> jsonData = jsonDecode(json);
 
       StorageRoot root = StorageRoot.fromJson(jsonData);
@@ -15,7 +18,7 @@ abstract class Repository {
     } catch (err, stack) {
       print("Error while loading: " + err.toString());
       print(stack);
-      return StorageRoot();
+      return StorageRoot.empty();
     }
   }
 }

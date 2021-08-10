@@ -31,8 +31,9 @@ class GoogleRepository extends Repository {
   @override
   Future<StorageRoot> getRoot() async {
     final fileId = await _getDBFileIdFromDrive();
+    print("Load FileID: " + (fileId ?? "-"));
     if (fileId == null) {
-      return StorageRoot();
+      return StorageRoot.empty();
     } else {
       final headers = {'Authorization': 'Bearer $_accessToken'};
       final url = Uri.parse(
@@ -45,6 +46,11 @@ class GoogleRepository extends Repository {
   @override
   Future<void> saveRoot(StorageRoot root) async {
     final fileId = await _getDBFileIdFromDrive();
+    print("fileID: " + (fileId ?? "-"));
+    print(root);
+    print(root.toJson());
+    print(json.encode(root.toJson()));
+    print(jsonEncode(root.toJson()));
     if (fileId == null) {
       final headers = {
         'Authorization': 'Bearer $_accessToken',
@@ -63,9 +69,10 @@ class GoogleRepository extends Repository {
 
       final headers2 = {'Authorization': 'Bearer $_accessToken'};
       final uploadUri = Uri.parse(location!);
-      final uploadResponse =
-          await put(uploadUri, headers: headers2, body: json.encode(root));
-      print("Upload result: $uploadResponse");
+      print("Sending: " + json.encode(root.toJson()));
+      final uploadResponse = await put(uploadUri,
+          headers: headers2, body: json.encode(root.toJson()));
+      print("Upload result: ${uploadResponse.statusCode}");
       print(uploadResponse.body);
     } else {
       final headers = {
@@ -74,7 +81,12 @@ class GoogleRepository extends Repository {
       };
       final initiateUri =
           Uri.https('www.googleapis.com', '/upload/drive/v3/files/$fileId');
-      await patch(initiateUri, headers: headers, body: json.encode(root));
+
+      print("Sending: " + json.encode(root.toJson()));
+      var updateResponse = await patch(initiateUri,
+          headers: headers, body: json.encode(root.toJson()));
+      print("Update result: ${updateResponse.statusCode}");
+      print(updateResponse.body);
     }
   }
 }

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_smartstorage/bloc/google_bloc.dart';
 import 'package:qr_smartstorage/bloc/storage_bloc.dart';
 import 'package:qr_smartstorage/resources/storage_root.dart';
+import 'package:qr_smartstorage/test/add_test.dart';
 
 class StorageWidget extends StatelessWidget {
   const StorageWidget({Key? key}) : super(key: key);
@@ -18,14 +19,19 @@ class StorageWidget extends StatelessWidget {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [Text(state.root.toString())],
+            children: [
+              Flexible(
+                child: Text(state.root.toString()),
+              )
+            ],
           ),
           ElevatedButton(
               onPressed: () {
                 BlocProvider.of<GoogleBloc>(context)
                     .add(GoogleLogoutButtonPressedEvent());
               },
-              child: Text("Logout"))
+              child: Text("Logout")),
+          StorageAddTestWidget()
         ],
       );
     });

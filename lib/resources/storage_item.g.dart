@@ -8,12 +8,12 @@ part of 'storage_item.dart';
 
 StorageItem _$StorageItemFromJson(Map<String, dynamic> json) {
   return StorageItem(
+    json['type'] as String,
     json['id'] as String,
     json['name'] as String,
-  )
-    ..type = json['type'] as String
-    ..description = json['description'] as String?
-    ..creation = DateTime.parse(json['creation'] as String);
+    json['description'] as String?,
+    DateTime.parse(json['creation'] as String),
+  );
 }
 
 Map<String, dynamic> _$StorageItemToJson(StorageItem instance) =>

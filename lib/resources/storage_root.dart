@@ -6,13 +6,29 @@ part 'storage_root.g.dart';
 
 @JsonSerializable()
 class StorageRoot extends Equatable implements Storage {
-  String? description;
-  String id = "0";
-  String name = "Root";
-  String type = "Root";
-  List<Storage> children = [];
+  final String id = "0";
+  final String name = "Root";
+  final String type;
+  final List<Storage> children;
 
-  StorageRoot();
+  StorageRoot(this.type, this.children);
+
+  StorageRoot.empty()
+      : type = "Root",
+        children = [];
+
+  StorageRoot.create({required List<Storage> children})
+      : type = "Root",
+        this.children = children;
+
+  StorageRoot copy({String? withoutId}) {
+    return StorageRoot.create(
+      children: children
+          .where((element) => withoutId == null || element.id != withoutId)
+          .map((child) => child.copy())
+          .toList(),
+    );
+  }
 
   factory StorageRoot.fromJson(Map<String, dynamic> json) =>
       _$StorageRootFromJson(json);
@@ -21,4 +37,7 @@ class StorageRoot extends Equatable implements Storage {
 
   @override
   List<Object> get props => [type, id, name, children];
+
+  @override
+  bool get stringify => true;
 }

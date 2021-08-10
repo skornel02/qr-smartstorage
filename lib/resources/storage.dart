@@ -4,11 +4,13 @@ import 'package:qr_smartstorage/resources/storage_item.dart';
 import 'package:qr_smartstorage/resources/storage_root.dart';
 
 abstract class Storage extends Equatable {
-  abstract String type;
-  abstract String id;
-  abstract String name;
+  abstract final String type;
+  abstract final String id;
+  abstract final String name;
 
   Storage();
+
+  Storage copy({String? withoutId});
 
   factory Storage.fromJson(Map<String, dynamic> json) {
     String? type = json["type"];
