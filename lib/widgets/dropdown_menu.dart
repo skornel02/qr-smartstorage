@@ -1,27 +1,28 @@
 import 'package:flutter/material.dart';
 
-PopupMenuButton dropDownMenu = PopupMenuButton(
-  itemBuilder: (context) => _menuItems,
-);
-
-List<PopupMenuEntry> _menuItems = [
-  const PopupMenuItem(
-    child: ListTile(
-      leading: Icon(Icons.edit),
-      title: Text('Edit title'),
+PopupMenuButton createDropDownMenu({
+  required VoidCallback handleEditName,
+  required VoidCallback handleRemove,
+}) {
+  List<PopupMenuEntry> _menuItems = [
+    PopupMenuItem(
+      child: ListTile(
+        leading: Icon(Icons.edit),
+        title: Text('Edit title'),
+        onTap: handleEditName,
+      ),
     ),
-  ),
-  const PopupMenuItem(
-    child: ListTile(
-      leading: Icon(Icons.edit),
-      title: Text('Edit description'),
+    const PopupMenuDivider(),
+    PopupMenuItem(
+      child: ListTile(
+        leading: Icon(Icons.delete),
+        title: Text('Delete'),
+        onTap: handleRemove,
+      ),
     ),
-  ),
-  const PopupMenuDivider(),
-  const PopupMenuItem(
-    child: ListTile(
-      leading: Icon(Icons.delete),
-      title: Text('Delete'),
-    ),
-  ),
-];
+  ];
+  PopupMenuButton dropDownMenu = PopupMenuButton(
+    itemBuilder: (context) => _menuItems,
+  );
+  return dropDownMenu;
+}

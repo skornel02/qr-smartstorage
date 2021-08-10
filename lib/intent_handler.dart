@@ -1,44 +1,14 @@
-import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:qr_smartstorage/bloc/storage_bloc.dart';
 import 'package:qr_smartstorage/helper/qr_helper.dart';
 
 import 'package:uni_links/uni_links.dart';
 
-class IntentHandlerWidget extends StatelessWidget {
+class IntentHandler extends StatefulWidget {
   final Widget child;
 
-  const IntentHandlerWidget({Key? key, required this.child}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<StorageBloc, StorageState>(
-      builder: (context, state) {
-        if (state.runtimeType == StorageLoading) {
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [CircularProgressIndicator()],
-              )
-            ],
-          );
-        }
-        return Column(
-          children: [IntentHandler(), child],
-        );
-      },
-    );
-  }
-}
-
-class IntentHandler extends StatefulWidget {
-  const IntentHandler({Key? key}) : super(key: key);
+  const IntentHandler({Key? key, required this.child}) : super(key: key);
 
   @override
   _IntentHandlerState createState() => _IntentHandlerState();
@@ -74,6 +44,6 @@ class _IntentHandlerState extends State<IntentHandler> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return this.widget.child;
   }
 }

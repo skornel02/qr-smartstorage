@@ -22,12 +22,14 @@ class MyApp extends StatelessWidget {
       ),
       home: BlocProvider(
         create: (context) => GoogleBloc(),
-        child: Scaffold(
-          body: BlocBuilder<GoogleBloc, GoogleState>(builder: (context, state) {
-            if (state.runtimeType == GoogleReadyToLoginState) {
-              return LoginWidget();
-            } else if (state.runtimeType == GoogleLoginWaitingState) {
-              return Column(
+        child: BlocBuilder<GoogleBloc, GoogleState>(builder: (context, state) {
+          if (state.runtimeType == GoogleReadyToLoginState) {
+            return Scaffold(
+              body: LoginWidget(),
+            );
+          } else if (state.runtimeType == GoogleLoginWaitingState) {
+            return Scaffold(
+              body: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Row(
@@ -35,16 +37,17 @@ class MyApp extends StatelessWidget {
                     children: [CircularProgressIndicator()],
                   )
                 ],
-              );
-            } else if (state.runtimeType == GoogleLoginSuccessfulState) {
-              GoogleLoginSuccessfulState s =
-                  state as GoogleLoginSuccessfulState;
-              GoogleRepository repository = GoogleRepository(s.accessToken);
-              return Home(repository);
-            }
-            return Container();
-          }),
-        ),
+              ),
+            );
+          } else if (state.runtimeType == GoogleLoginSuccessfulState) {
+            GoogleLoginSuccessfulState s = state as GoogleLoginSuccessfulState;
+            GoogleRepository repository = GoogleRepository(s.accessToken);
+            return Home(repository);
+          }
+          return Scaffold(
+            body: Container(),
+          );
+        }),
       ),
     );
   }

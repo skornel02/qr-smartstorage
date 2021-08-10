@@ -1,7 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:qr_smartstorage/helper/qr_helper.dart';
+import 'package:qr_smartstorage/resources/storage_container.dart';
 
 class ContainerCard extends StatelessWidget {
+  final StorageContainer _container;
+
+  ContainerCard(this._container);
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -13,12 +19,11 @@ class ContainerCard extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 16.0),
-            // TODO: Get container name
-            child: Text('Doboz'),
+            child: Text(_container.name),
           ),
           IconButton(
-            // TODO: Send user to Container page on button press
-              onPressed: () => print('Pressed'), icon: Icon(Icons.launch)),
+              onPressed: () => handleIncomingId(context, _container.id),
+              icon: Icon(Icons.launch)),
         ],
       ),
     );

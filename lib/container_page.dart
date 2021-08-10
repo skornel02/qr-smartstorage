@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_smartstorage/bloc/storage_bloc.dart';
 import 'package:qr_smartstorage/helper/storage_helper.dart';
 import 'package:qr_smartstorage/resources/storage_container.dart';
+import 'package:qr_smartstorage/widgets/pages/container_page.dart';
 
 class ContainerPageWidget extends StatelessWidget {
   final StorageBloc _storageBloc;
@@ -25,22 +26,7 @@ class ContainerPageWidget extends StatelessWidget {
             return Container();
           }
           StorageContainer container = co;
-          return AppBar(
-            title: Text(container.name),
-            actions: [
-              IconButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  BlocProvider.of<StorageBloc>(context)
-                      .add(DeleteStorageItem(container.id));
-                },
-                icon: Icon(
-                  Icons.delete,
-                  color: Colors.red,
-                ),
-              )
-            ],
-          );
+          return ContainerPage(container);
         },
       ),
     );

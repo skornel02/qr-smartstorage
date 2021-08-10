@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_smartstorage/bloc/storage_bloc.dart';
 import 'package:qr_smartstorage/intent_handler.dart';
-import 'package:qr_smartstorage/storage.dart';
 import 'package:qr_smartstorage/storage/repository.dart';
+import 'package:qr_smartstorage/widgets/pages/home_page.dart';
 
 class Home extends StatelessWidget {
   final Repository repository;
@@ -16,11 +16,11 @@ class Home extends StatelessWidget {
     repository.getRoot().then((value) => print(value.toString()));
     return BlocProvider(
       create: (context) => StorageBloc(repository),
-      child: IntentHandlerWidget(
-        child: BlocBuilder<StorageBloc, StorageState>(
-          builder: (context, state) {
-            if (state.runtimeType == StorageLoading) {
-              return Column(
+      child: BlocBuilder<StorageBloc, StorageState>(
+        builder: (context, state) {
+          if (state.runtimeType == StorageLoading) {
+            return Scaffold(
+              body: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Row(
@@ -28,11 +28,11 @@ class Home extends StatelessWidget {
                     children: [CircularProgressIndicator()],
                   )
                 ],
-              );
-            }
-            return StorageWidget();
-          },
-        ),
+              ),
+            );
+          }
+          return IntentHandler(child: HomePage());
+        },
       ),
     );
   }

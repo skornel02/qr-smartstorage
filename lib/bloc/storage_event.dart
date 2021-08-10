@@ -35,3 +35,34 @@ class DeleteStorageItem extends StorageEvent {
   @override
   List<Object> get props => [id];
 }
+
+class AddItem extends StorageEvent {
+  final String id;
+  final String name;
+  final String parentId;
+
+  AddItem(this.id, this.name, this.parentId);
+
+  @override
+  List<Object> get props => [id, name, parentId];
+}
+
+class UpdateDescription extends StorageEvent {
+  final String id;
+  final String description;
+
+  UpdateDescription(this.id, this.description);
+
+  @override
+  List<Object> get props => [id, description];
+}
+
+class UpdateName extends StorageEvent {
+  final String id;
+  final String name;
+
+  UpdateName(this.id, this.name);
+
+  @override
+  List<Object> get props => [id, name];
+}

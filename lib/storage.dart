@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_smartstorage/bloc/google_bloc.dart';
 import 'package:qr_smartstorage/bloc/storage_bloc.dart';
-import 'package:qr_smartstorage/resources/storage_root.dart';
 import 'package:qr_smartstorage/test/add_test.dart';
 
 class StorageWidget extends StatelessWidget {

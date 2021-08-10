@@ -32,3 +32,9 @@ abstract class Storage extends Equatable {
   @override
   List<Object> get props => [type, id, name];
 }
+
+abstract class StorageWithChildren extends Storage {
+  abstract final List<Storage> children;
+  @override
+  List<Object> get props => [type, id, name, children];
+}

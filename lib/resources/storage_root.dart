@@ -5,7 +5,7 @@ import 'package:qr_smartstorage/resources/storage.dart';
 part 'storage_root.g.dart';
 
 @JsonSerializable()
-class StorageRoot extends Equatable implements Storage {
+class StorageRoot extends Equatable implements StorageWithChildren {
   final String id = "0";
   final String name = "Root";
   final String type;
@@ -25,7 +25,7 @@ class StorageRoot extends Equatable implements Storage {
     return StorageRoot.create(
       children: children
           .where((element) => withoutId == null || element.id != withoutId)
-          .map((child) => child.copy())
+          .map((child) => child.copy(withoutId: withoutId))
           .toList(),
     );
   }

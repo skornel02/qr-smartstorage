@@ -45,7 +45,7 @@ class StorageItem extends Equatable implements Storage {
   Map<String, dynamic> toJson() => _$StorageItemToJson(this);
 
   @override
-  List<Object> get props => [type, id, name, creation];
+  List<Object> get props => [type, id, name, creation, description ?? ""];
 
   @override
   bool get stringify => true;

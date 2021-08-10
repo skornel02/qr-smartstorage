@@ -5,7 +5,7 @@ import 'package:qr_smartstorage/resources/storage.dart';
 part 'storage_container.g.dart';
 
 @JsonSerializable()
-class StorageContainer extends Equatable implements Storage {
+class StorageContainer extends Equatable implements StorageWithChildren {
   final String type;
   final String id;
   final String name;
@@ -40,7 +40,7 @@ class StorageContainer extends Equatable implements Storage {
       children: this
           .children
           .where((element) => withoutId == null || element.id != withoutId)
-          .map((child) => child.copy())
+          .map((child) => child.copy(withoutId: withoutId))
           .toList(),
     );
   }
@@ -51,7 +51,7 @@ class StorageContainer extends Equatable implements Storage {
   Map<String, dynamic> toJson() => _$StorageContainerToJson(this);
 
   @override
-  List<Object> get props => [type, id, name, children];
+  List<Object> get props => [type, id, name, children, description ?? ""];
 
   @override
   bool get stringify => true;
