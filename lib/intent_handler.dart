@@ -29,27 +29,29 @@ class IntentHandlerWidget extends StatelessWidget {
             ],
           );
         }
-        return IntentHandler(child: child, context: context);
+        return Column(
+          children: [IntentHandler(), child],
+        );
       },
     );
   }
 }
 
-class IntentHandler extends StatelessWidget {
-  final Widget child;
-  final BuildContext context;
-  late final StreamSubscription? _sub;
+class IntentHandler extends StatefulWidget {
+  const IntentHandler({Key? key}) : super(key: key);
 
-  IntentHandler({Key? key, required this.child, required this.context})
-      : super(key: key) {
+  @override
+  _IntentHandlerState createState() => _IntentHandlerState();
+}
+
+class _IntentHandlerState extends State<IntentHandler> {
+  _IntentHandlerState() {
     if (!kIsWeb) {
-      _sub = uriLinkStream.listen((Uri? uri) {
+      uriLinkStream.listen((Uri? uri) {
         print("URI CHANGE: " + uri.toString());
         handleUri(uri);
       }, onError: (err) {});
       checkStarting();
-    } else {
-      _sub = null;
     }
   }
 
@@ -72,6 +74,6 @@ class IntentHandler extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return child;
+    return Container();
   }
 }

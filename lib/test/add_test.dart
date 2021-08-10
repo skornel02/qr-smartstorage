@@ -57,7 +57,7 @@ class _StorageAddTestStateWidget extends State<StorageAddTestWidget> {
           color: Colors.deepPurple,
         ),
         ElevatedButton(
-            onPressed: () /*async*/ {
+            onPressed: () {
               StorageBloc bloc = BlocProvider.of<StorageBloc>(context);
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => BlocProvider.value(
@@ -65,21 +65,6 @@ class _StorageAddTestStateWidget extends State<StorageAddTestWidget> {
                   child: QRViewExample(),
                 ),
               ));
-              /*
-              StorageReady state = bloc.state as StorageReady;
-
-              String code = "test";
-              print("QR CODE:" + code);
-              if (code.startsWith("qrss://")) {
-                code = code.replaceFirst("qrss://", "");
-              }
-              String id = code;
-              print("Container ID: " + id);
-
-              print("");
-              print("");
-              print("");
-              handleIncomingId(context, id);*/
             },
             child: Text("Scan container")),
       ],

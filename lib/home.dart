@@ -9,7 +9,7 @@ import 'package:qr_smartstorage/storage/repository.dart';
 class Home extends StatelessWidget {
   final Repository repository;
 
-  const Home(this.repository, {Key? key}) : super(key: key);
+  Home(this.repository, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
