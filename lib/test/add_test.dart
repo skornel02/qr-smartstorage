@@ -1,14 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:prompt_dialog/prompt_dialog.dart';
 import 'package:qr_smartstorage/bloc/storage_bloc.dart';
-import 'package:qr_smartstorage/container_page.dart';
 import 'package:qr_smartstorage/helper/qr_helper.dart';
-import 'package:qr_smartstorage/helper/storage_helper.dart';
-import 'package:qr_smartstorage/resources/storage_container.dart';
+import 'package:qr_smartstorage/qr_view.dart';
 import 'package:uuid/uuid.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
 class StorageAddTestWidget extends StatefulWidget {
   const StorageAddTestWidget({Key? key}) : super(key: key);
@@ -61,16 +57,18 @@ class _StorageAddTestStateWidget extends State<StorageAddTestWidget> {
           color: Colors.deepPurple,
         ),
         ElevatedButton(
-            onPressed: () async {
+            onPressed: () /*async*/ {
               StorageBloc bloc = BlocProvider.of<StorageBloc>(context);
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => BlocProvider.value(
+                  value: bloc,
+                  child: QRViewExample(),
+                ),
+              ));
+              /*
               StorageReady state = bloc.state as StorageReady;
 
-              String code = await FlutterBarcodeScanner.scanBarcode(
-                "#ff6666",
-                "Cancel",
-                false,
-                ScanMode.DEFAULT,
-              );
+              String code = "test";
               print("QR CODE:" + code);
               if (code.startsWith("qrss://")) {
                 code = code.replaceFirst("qrss://", "");
@@ -81,7 +79,7 @@ class _StorageAddTestStateWidget extends State<StorageAddTestWidget> {
               print("");
               print("");
               print("");
-              handleIncomingId(context, id);
+              handleIncomingId(context, id);*/
             },
             child: Text("Scan container")),
       ],
