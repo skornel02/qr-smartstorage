@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:qr_smartstorage/translations/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 PopupMenuButton createDropDownMenu({
   required VoidCallback handleEditName,
@@ -8,7 +10,7 @@ PopupMenuButton createDropDownMenu({
     PopupMenuItem(
       child: ListTile(
         leading: Icon(Icons.edit),
-        title: Text('Edit title'),
+        title: Text(tr(LocaleKeys.editTitle)),
         onTap: handleEditName,
       ),
     ),
@@ -16,7 +18,7 @@ PopupMenuButton createDropDownMenu({
     PopupMenuItem(
       child: ListTile(
         leading: Icon(Icons.delete),
-        title: Text('Delete'),
+        title: Text(tr(LocaleKeys.delete)),
         onTap: handleRemove,
       ),
     ),

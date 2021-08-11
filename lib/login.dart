@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:qr_smartstorage/bloc/google_bloc.dart';
+import 'package:qr_smartstorage/translations/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginWidget extends StatelessWidget {
@@ -23,7 +25,7 @@ class LoginWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          'Please log in!',
+          tr(LocaleKeys.logIn),
         ),
         SignInButton(
           Buttons.Google,

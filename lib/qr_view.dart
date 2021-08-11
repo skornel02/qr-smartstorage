@@ -5,6 +5,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:qr_smartstorage/helper/qr_helper.dart';
+import 'package:qr_smartstorage/translations/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class QRViewExample extends StatefulWidget {
   @override
@@ -40,9 +42,9 @@ class _QRViewExampleState extends State<QRViewExample> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   if (result != null)
-                    Text('Data: ${result!.code}')
+                    Text('${tr(LocaleKeys.data)}: ${result!.code}')
                   else
-                    Text('Scan a code'),
+                    Text(tr(LocaleKeys.scanCode)),
                   kIsWeb
                       ? Container()
                       : Row(
@@ -59,7 +61,7 @@ class _QRViewExampleState extends State<QRViewExample> {
                                   child: FutureBuilder(
                                     future: controller?.getFlashStatus(),
                                     builder: (context, snapshot) {
-                                      return Text('Flash: ${snapshot.data}');
+                                      return Text('${tr(LocaleKeys.flash)}: ${snapshot.data}');
                                     },
                                   )),
                             ),
@@ -73,7 +75,7 @@ class _QRViewExampleState extends State<QRViewExample> {
                                           paused = false;
                                         });
                                       },
-                                      child: Text('resume',
+                                      child: Text(tr(LocaleKeys.resume),
                                           style: TextStyle(fontSize: 20)),
                                     )
                                   : ElevatedButton(
@@ -83,7 +85,7 @@ class _QRViewExampleState extends State<QRViewExample> {
                                           paused = true;
                                         });
                                       },
-                                      child: Text('pause',
+                                      child: Text(tr(LocaleKeys.pause),
                                           style: TextStyle(fontSize: 20)),
                                     ),
                             )
@@ -148,7 +150,7 @@ class _QRViewExampleState extends State<QRViewExample> {
     print('${DateTime.now().toIso8601String()}_onPermissionSet $p');
     if (!p) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('no Permission')),
+        SnackBar(content: Text(tr(LocaleKeys.noPermission))),
       );
     }
   }

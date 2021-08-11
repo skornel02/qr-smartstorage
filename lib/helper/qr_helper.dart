@@ -6,6 +6,8 @@ import 'package:qr_smartstorage/bloc/storage_bloc.dart';
 import 'package:qr_smartstorage/container_page.dart';
 import 'package:qr_smartstorage/helper/storage_helper.dart';
 import 'package:qr_smartstorage/resources/storage_container.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:qr_smartstorage/translations/locale_keys.g.dart';
 
 Future<void> handleIncomingId(BuildContext context, String id) async {
   print("Handling incoming ID: " + id);
@@ -26,8 +28,8 @@ Future<void> handleIncomingId(BuildContext context, String id) async {
     print("New container with id: " + id);
     String? name = await prompt(
       context,
-      title: Text("Create new container"),
-      hintText: "Container name...",
+      title: Text(tr(LocaleKeys.createContainer)),
+      hintText: tr(LocaleKeys.containerName),
       maxLines: 1,
     );
     print(name);

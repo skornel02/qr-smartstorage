@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prompt_dialog/prompt_dialog.dart';
@@ -6,6 +7,7 @@ import 'package:qr_smartstorage/description.dart';
 import 'package:qr_smartstorage/helper/storage_helper.dart';
 import 'package:qr_smartstorage/resources/storage_container.dart';
 import 'package:qr_smartstorage/resources/storage_item.dart';
+import 'package:qr_smartstorage/translations/locale_keys.g.dart';
 import 'package:qr_smartstorage/widgets/container_card.dart';
 import 'package:qr_smartstorage/widgets/item_accordion.dart';
 import 'package:qr_smartstorage/widgets/dropdown_menu.dart';
@@ -19,8 +21,8 @@ class ContainerPage extends StatelessWidget {
   void handleEditName(BuildContext context) async {
     String? name = await prompt(
       context,
-      title: Text("New container name"),
-      hintText: "Container name...",
+      title: Text(tr(LocaleKeys.newContainerName)),
+      hintText: tr(LocaleKeys.containerName),
       maxLines: 1,
     );
     if (name != null) {
@@ -36,7 +38,7 @@ class ContainerPage extends StatelessWidget {
   }
 
   void handleDescriptionUpdate(BuildContext context, String nextDescription) {
-    print("New description: " + nextDescription);
+    print("${tr(LocaleKeys.newDescription)}: " + nextDescription);
     BlocProvider.of<StorageBloc>(context)
         .add(UpdateDescription(_container.id, nextDescription));
   }
@@ -71,7 +73,7 @@ class ContainerPage extends StatelessWidget {
               ),
               Divider(),
               Text(
-                'Containers',
+                tr(LocaleKeys.containers),
                 style: TextStyle(
                   fontSize: 24,
                 ),
@@ -88,7 +90,7 @@ class ContainerPage extends StatelessWidget {
                 physics: NeverScrollableScrollPhysics(),
               ),
               Text(
-                'Items',
+                tr(LocaleKeys.items),
                 style: TextStyle(fontSize: 24),
               ),
               ListView.builder(
@@ -111,8 +113,8 @@ class ContainerPage extends StatelessWidget {
         onPressed: () async {
           String? name = await prompt(
             context,
-            title: Text("Create new item"),
-            hintText: "Item name...",
+            title: Text(tr(LocaleKeys.createItem)),
+            hintText: tr(LocaleKeys.itemName),
             maxLines: 1,
           );
           print(name);

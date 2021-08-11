@@ -1,9 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_smartstorage/bloc/google_bloc.dart';
 import 'package:qr_smartstorage/bloc/storage_bloc.dart';
 import 'package:qr_smartstorage/test/add_test.dart';
+import 'package:qr_smartstorage/translations/locale_keys.g.dart';
 
 class StorageWidget extends StatelessWidget {
   const StorageWidget({Key? key}) : super(key: key);
@@ -29,7 +31,7 @@ class StorageWidget extends StatelessWidget {
                 BlocProvider.of<GoogleBloc>(context)
                     .add(GoogleLogoutButtonPressedEvent());
               },
-              child: Text("Logout")),
+              child: Text(tr(LocaleKeys.logOut))),
           StorageAddTestWidget()
         ],
       );

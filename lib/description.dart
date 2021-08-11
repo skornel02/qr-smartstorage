@@ -1,10 +1,12 @@
 import 'dart:ui';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:markdown_editable_textinput/format_markdown.dart';
 import 'package:markdown_editable_textinput/markdown_text_input.dart';
+import 'package:qr_smartstorage/translations/locale_keys.g.dart';
 
 class DescriptionWidget extends StatefulWidget {
   final String? description;
@@ -18,7 +20,7 @@ class DescriptionWidget extends StatefulWidget {
 
   @override
   _DescriptionWidgetState createState() =>
-      _DescriptionWidgetState(false, description ?? "No description...");
+      _DescriptionWidgetState(false, description ?? tr(LocaleKeys.noDescription));
 }
 
 class _DescriptionWidgetState extends State<DescriptionWidget> {
@@ -36,7 +38,7 @@ class _DescriptionWidgetState extends State<DescriptionWidget> {
   void handleCloseEditor() {
     setState(() {
       editing = false;
-      realDescription = this.widget.description ?? "No description...";
+      realDescription = this.widget.description ?? tr(LocaleKeys.noDescription);
     });
   }
 
@@ -86,7 +88,7 @@ class _DescriptionWidgetState extends State<DescriptionWidget> {
           MarkdownTextInput(
             (String value) => setState(() => realDescription = value),
             realDescription,
-            label: 'Description',
+            label: tr(LocaleKeys.description),
             maxLines: 10,
             actions: MarkdownType.values,
           ),

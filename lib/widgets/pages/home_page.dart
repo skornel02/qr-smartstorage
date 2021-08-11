@@ -9,9 +9,11 @@ import 'package:qr_smartstorage/helper/storage_helper.dart';
 import 'package:qr_smartstorage/qr_view.dart';
 import 'package:qr_smartstorage/resources/storage_container.dart';
 import 'package:qr_smartstorage/resources/storage_item.dart';
+import 'package:qr_smartstorage/translations/locale_keys.g.dart';
 import 'package:qr_smartstorage/widgets/container_card.dart';
 import 'package:qr_smartstorage/widgets/item_accordion.dart';
 import 'package:rxdart/transformers.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -53,7 +55,7 @@ class _HomePageState extends State<HomePage> {
           title: TextField(
             controller: controller,
             decoration: InputDecoration(
-                hintText: 'Search', border: UnderlineInputBorder()),
+                hintText: tr(LocaleKeys.search), border: UnderlineInputBorder()),
             cursorColor: Colors.black26,
           ),
           actions: [

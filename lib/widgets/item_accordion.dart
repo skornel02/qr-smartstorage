@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,6 +10,7 @@ import 'package:qr_smartstorage/helper/storage_helper.dart';
 import 'package:qr_smartstorage/resources/storage.dart';
 import 'package:qr_smartstorage/resources/storage_container.dart';
 import 'package:qr_smartstorage/resources/storage_item.dart';
+import 'package:qr_smartstorage/translations/locale_keys.g.dart';
 import 'package:qr_smartstorage/widgets/dropdown_menu.dart';
 
 class ItemAccordion extends StatelessWidget {
@@ -20,8 +22,8 @@ class ItemAccordion extends StatelessWidget {
   void handleEditName(BuildContext context) async {
     String? name = await prompt(
       context,
-      title: Text("New container name"),
-      hintText: "Container name...",
+      title: Text(tr(LocaleKeys.newContainerName)),
+      hintText: tr(LocaleKeys.containerName),
       maxLines: 1,
     );
     if (name != null) {
@@ -78,7 +80,7 @@ class ItemAccordion extends StatelessWidget {
                             getParentOfItem(root: state.root, item: _item);
 
                         if (parent.type == "Root") {
-                          return Text("Lost");
+                          return Text(tr(LocaleKeys.lost));
                         } else {
                           StorageContainer container =
                               parent as StorageContainer;
