@@ -6,7 +6,6 @@ import 'package:qr_smartstorage/home.dart';
 import 'package:qr_smartstorage/login.dart';
 import 'package:qr_smartstorage/storage/google_repository.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:qr_smartstorage/translations/locale_keys.g.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
@@ -20,8 +19,8 @@ void main() async {
       fallbackLocale: Locale('en'),
       useOnlyLangCode: true,
       supportedLocales: [
-        Locale('en', ''),
-        Locale('hu', ''),
+        Locale('en'),
+        Locale('hu'),
       ],
     ),
   );
@@ -32,18 +31,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       localizationsDelegates: [
-        ...context.localizationDelegates,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
+        ...context.localizationDelegates,
       ],
       supportedLocales: [
-        ...context.supportedLocales,
         Locale('en', ''),
         Locale('hu', ''),
+        ...context.supportedLocales,
       ],
       locale: context.locale,
-      title: tr(LocaleKeys.title),
+      title: 'QR Smart Storage',
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
